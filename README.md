@@ -8,7 +8,11 @@ This is a Python-based mobile application built with KivyMD, designed to load an
 - **VCF File Selection:** Choose a VCF file from the device.
 - **Contact Display:** View contacts in the VCF file, showing names and phone numbers.
 - **About Us:** Access a page with information and contact links to the developers via Telegram.
+---
 
+## 📷 Screenshots 
+![Cat]()
+---
 ## Installation:
 To use this app, you need to install the following dependencies:
 
@@ -59,8 +63,13 @@ The app uses KivyMD components such as `MDTextButton`, `MDTopAppBar`, and `MDLis
 2. **VCF File Screen:** Displays the contact list after a VCF file is selected.
 3. **About Us Screen:** Provides contact information and a link to contact the developers on Telegram.
 
-## Contact Us:
+## 📬 Contact
 
-- For any issues or feedback, please contact the developer via Telegram: [@Thekingdynamo](https://t.me/Thekingdynamo).
-
+Feel free to reach out if you have questions or want to contribute!
+---
+[Telegram](https://t.me/Thekingdynamo)
+[WhatsApp](https://wa.me/+22897606374)
+[Facebook](https://www.facebook.com/alexdynamo.dynamo/)
+[Instagram](https://www.instagram.com/thekingdynamo/)
+[Beacons](https://beacons.page/thekingdynamo)
 ---
