@@ -7,8 +7,7 @@ from plyer import filechooser
 import re
 import webbrowser
 import os
-from kivy.core.window import Window
-Window.size = (398, 804)
+
 kv="""
 Screen:
     name: "welcome"
