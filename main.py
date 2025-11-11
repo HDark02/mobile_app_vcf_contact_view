@@ -14,7 +14,7 @@ Screen:
     MDFloatLayout:
         md_bg_color: "white"
         Image:
-            source: "image_phone.jpg"
+            source: "image_phone.png"
             pos_hint: {"center_x": .5,"center_y": .5}
         Button:
             text: "Choose your vcf file"
@@ -198,3 +198,4 @@ class contact(MDApp):
 
 if __name__ == "__main__":
     contact().run()
+
