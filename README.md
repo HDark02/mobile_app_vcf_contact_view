@@ -1,5 +1,3 @@
----
-
 # VCF Viewer App
 
 This is a Python-based mobile application built with KivyMD, designed to load and display contact information from a VCF (vCard) file. The app allows users to choose a VCF file, view the contact details, and interact with the app using an intuitive interface. It also includes an "About Us" screen where users can contact the developers through Telegram.
@@ -11,7 +9,7 @@ This is a Python-based mobile application built with KivyMD, designed to load an
 ---
 
 ## 📷 Screenshots 
-![Cat]()
+![App Interface](https://github.com/HDark02/mobile_app_vcf_contact_view/blob/main/image.png)
 ---
 ## Installation:
 To use this app, you need to install the following dependencies:
