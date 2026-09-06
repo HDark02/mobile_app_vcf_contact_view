@@ -99,7 +99,7 @@ android.presplash_color = white
 android.permissions = READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE
 # (list) features (adds uses-feature -tags to manifest)
 #android.features = android.hardware.usb.host
-
+android.manifest.application_attributes = android:requestLegacyExternalStorage="true"
 # (int) Target Android API, should be as high as possible.
 #android.api = 31
 
