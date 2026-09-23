@@ -35,7 +35,7 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy==2.3.1,kivymd==1.2.0,pillow,plyer,pyjnius==1.7.0,android
+requirements = python3,kivy==2.3.1,kivymd==1.1.0,pillow,plyer,pyjnius==1.7.0
 # The only good modules which are compatible with convertor right now. Other modules may not work properly on android.
 # And i also look for the rest of the modules which are compatible with convertor. If you find any, please let me know.
 # kivy==2.3.1
