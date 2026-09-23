@@ -5,13 +5,8 @@ title = Vcf Contact
 
 # (str) Package name
 package.name = vontact_view
-
-# (str) Package name
-package.name = capsule50
-
 # (str) Package domain (needed for android/ios packaging)
-package.domain = org.cs50
-
+package.domain = org.production
 # (str) Source code where the main.py live
 source.dir = .
 
@@ -19,7 +14,7 @@ source.dir = .
 source.include_exts = 
 
 # (list) List of inclusions using pattern matching
-source.include_patterns = assets/*,assets/images/*.png,libs/*.json
+#source.include_patterns = assets/*,assets/images/*.png,libs/*.json
 
 # (list) Source files to exclude (leave empty to not exclude anything)
 #source.exclude_exts = spec
@@ -40,8 +35,15 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy,pillow,https://github.com/carbonkivy/carbonkivy/archive/master.zip,pyjnius,android, plyer
-
+requirements = python3,kivy==2.3.1,kivymd==1.2.0,pillow,plyer,pyjnius==1.7.0,android
+# The only good modules which are compatible with convertor right now. Other modules may not work properly on android.
+# And i also look for the rest of the modules which are compatible with convertor. If you find any, please let me know.
+# kivy==2.3.1
+# kivymd==1.1.1
+# pillow
+# plyer
+# pygame==2.6.1
+# pyjnius==1.7.0
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
 # requirements.source.kivy = ../../kivy
@@ -87,8 +89,7 @@ fullscreen = 0
 # red, blue, green, black, white, gray, cyan, magenta, yellow, lightgray,
 # darkgray, grey, lightgrey, darkgrey, aqua, fuchsia, lime, maroon, navy,
 # olive, purple, silver, teal.
-android.presplash_color = #FFFFFF
-
+android.presplash_color = black
 # (string) Presplash animation using Lottie format.
 # see https://lottiefiles.com/ for examples and https://airbnb.design/lottie/
 # for general documentation.
@@ -100,26 +101,30 @@ android.presplash_color = #FFFFFF
 #icon.adaptive_background.filename = %(source.dir)s/data/icon_bg.png
 
 # (list) Permissions
-# (See https://python-for-android.readthedocs.io/en/latest/buildoptions.html for all the supported syntaxes and properties)
-android.permissions = android.permission.MANAGE_EXTERNAL_STORAGE, android.permission.READ_EXTERNAL_STORAGE, android.permission.WRITE_EXTERNAL_STORAGE
-
+# (See https://python-for-android.readthedocs.io/en/latest/buildoptions/#build-options-1 for all the supported syntaxes and properties)
+#android.permissions = android.permission.INTERNET, (name=android.permission.WRITE_EXTERNAL_STORAGE;maxSdkVersion=18)
+android.permissions = READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE
 # (list) features (adds uses-feature -tags to manifest)
 #android.features = android.hardware.usb.host
+android.manifest.application_attributes = android:requestLegacyExternalStorage="true"
 
 # (int) Target Android API, should be as high as possible.
-android.api = 36
+#android.api = 31
 
 # (int) Minimum API your APK / AAB will support.
-android.minapi = 28
+#android.minapi = 21
 
 # (int) Android SDK version to use
 #android.sdk = 20
 
 # (str) Android NDK version to use
-android.ndk = 28c
+#android.ndk = 23b
 
 # (int) Android NDK API to use. This is the minimum API your app will support, it should usually match android.minapi.
-android.ndk_api = 28
+#android.ndk_api = 21
+
+# (bool) Use --private data storage (True) or --dir public storage (False)
+#android.private_storage = True
 
 # (str) Android NDK directory (if empty, it will be automatically downloaded.)
 #android.ndk_path =
@@ -130,7 +135,7 @@ android.ndk_api = 28
 # (str) ANT directory (if empty, it will be automatically downloaded.)
 #android.ant_path =
 
-# (bool) If True, then skip trying to update the Android SDK
+# (bool) If True, then skip trying to update the Android sdk
 # This can be useful to avoid excess Internet downloads or save time
 # when an update is due and you just want to test/build your package
 # android.skip_update = False
@@ -166,9 +171,6 @@ android.accept_sdk_license = True
 # (list) Pattern to whitelist for the whole project
 #android.whitelist =
 
-# (bool) If True, your application will be listed as a home app (launcher app)
-android.home_app = True
-
 # (str) Path to a custom whitelist file
 #android.whitelist_src =
 
@@ -183,7 +185,7 @@ android.home_app = True
 
 # (list) List of Java files to add to the android project (can be java or a
 # directory containing the files)
-android.add_src = ./src
+#android.add_src =
 
 # (list) Android AAR archives to add
 #android.add_aars =
@@ -212,7 +214,7 @@ android.add_src = ./src
 # (bool) Enable AndroidX support. Enable when 'android.gradle_dependencies'
 # contains an 'androidx' package, or any package from Kotlin source.
 # android.enable_androidx requires android.api >= 28
-android.enable_androidx = True
+#android.enable_androidx = True
 
 # (list) add java compile options
 # this can for example be necessary when importing certain java libraries using the 'android.gradle_dependencies' option
@@ -221,11 +223,11 @@ android.enable_androidx = True
 
 # (list) Gradle repositories to add {can be necessary for some android.gradle_dependencies}
 # please enclose in double quotes 
-# e.g. android.gradle_repositories = "maven { url 'https://repo.spring.io/release' }"
+# e.g. android.gradle_repositories = "maven { url 'https://kotlin.bintray.com/ktor' }"
 #android.add_gradle_repositories =
 
-# (list) packaging options to add
-# see https://developer.android.com/reference/tools/gradle-api/7.1/com/android/build/api/dsl/PackagingOptions
+# (list) packaging options to add 
+# see https://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.PackagingOptions.html
 # can be necessary to solve conflicts in gradle_dependencies
 # please enclose in double quotes 
 # e.g. android.add_packaging_options = "exclude 'META-INF/common.kotlin_module'", "exclude 'META-INF/*.kotlin_module'"
@@ -263,7 +265,7 @@ android.enable_androidx = True
 
 # (bool) Indicate whether the screen should stay on
 # Don't forget to add the WAKE_LOCK permission if you set this to True
-android.wakelock = True
+#android.wakelock = False
 
 # (list) Android application meta-data to set (key=value format)
 #android.meta_data =
@@ -289,7 +291,7 @@ android.wakelock = True
 
 # (list) The Android archs to build for, choices: armeabi-v7a, arm64-v8a, x86, x86_64
 # In past, was `android.arch` as we weren't supporting builds for multiple archs at the same time.
-android.archs = arm64-v7a
+android.archs = armeabi-v7a
 
 # (int) overrides automatic versionCode computation (used in build.gradle)
 # this is not the same as app version and should only be edited if you know what you're doing
@@ -311,16 +313,10 @@ android.allow_backup = True
 # android.no-byte-compile-python = False
 
 # (str) The format used to package the app for release mode (aab or apk or aar).
-android.release_artifact = aab
+#android.release_artifact = aab
 
 # (str) The format used to package the app for debug mode (apk or aar).
-android.debug_artifact = apk
-
-# (str) A display cutout is an area on some devices that extends into the display surface.
-# It allows for an edge-to-edge experience while providing space for important sensors on the front of the device.
-# Available options for Android API >= 28 are "default, shortEdges, never" and defaults to never.
-# Android documentation: https://developer.android.com/develop/ui/views/layout/display-cutout
-android.display_cutout = shortEdges
+#android.debug_artifact = apk
 
 #
 # Python for android (p4a) specific
@@ -330,15 +326,15 @@ android.display_cutout = shortEdges
 #p4a.url =
 
 # (str) python-for-android fork to use in case if p4a.url is not specified, defaults to upstream (kivy)
-p4a.fork = Novfensec
+#p4a.fork = kivy
 
 # (str) python-for-android branch to use, defaults to master
-p4a.branch = cs50activity
+#p4a.branch = master
 
 # (str) python-for-android specific commit to use, defaults to HEAD, must be within p4a.branch
 #p4a.commit = HEAD
 
-# (str) python-for-android git clone directory
+# (str) python-for-android git clone directory (if empty, it will be automatically cloned from github)
 #p4a.source_dir =
 
 # (str) The directory in which python-for-android should look for your own build recipes (if any)
@@ -348,7 +344,6 @@ p4a.branch = cs50activity
 #p4a.hook =
 
 # (str) Bootstrap to use for android builds
-# Run "buildozer android p4a -- bootstraps" for a list of valid values.
 # p4a.bootstrap = sdl2
 
 # (int) port number to specify an explicit --port= p4a argument (eg for bootstrap flask)
@@ -380,8 +375,8 @@ ios.kivy_ios_branch = master
 # Uncomment to use a custom checkout
 #ios.ios_deploy_dir = ../ios_deploy
 # Or specify URL and branch
-ios.ios_deploy_url = https://github.com/ios-control/ios-deploy
-ios.ios_deploy_branch = master
+ios.ios_deploy_url = https://github.com/phonegap/ios-deploy
+ios.ios_deploy_branch = 1.10.0
 
 # (bool) Whether or not to sign the code
 ios.codesign.allowed = false
@@ -398,22 +393,6 @@ ios.codesign.allowed = false
 
 # (str) The development team to use for signing the release version
 #ios.codesign.development_team.release = <hexstring>
-
-# (str) Justification text to be provided for being able to select media
-#ios.media_usage_description = "<APP> needs to access your media in order to <Do X and Y and Z> "
-
-# (str) Justification text to be provided for being able to use local network
-#ios.local_network_usage_description = "<App> needs permissions to <Do X and Y and Z> in your Local Area Network"
-
-# (str) Camera Usage justification string.
-#ios.camera_usage_description = "<App> uses Camera to do <X and Y and Z>"
-
-
-# (bool) Allow StatusBar to be controlled by API
-# ios.viewcontroller_based_statusbar_appearance = False
-
-# (str) A Xml String specifying a extension type.
-#ios.app_extensions = [["7zip", "zip"],  ["public.zip-archive"], "org.kivy.myappextensionfile", "<MyCustom> Extension File", "${MACOSX_BUNDLE_ICON_FILE}", "http://mysite.com/myapp/extensions.html"],
 
 # (str) URL pointing to .ipa file to be installed
 # This option should be defined along with `display_image_url` and `full_size_image_url` options.
@@ -442,54 +421,40 @@ warn_on_root = 1
 # (str) Path to build output (i.e. .apk, .aab, .ipa) storage
 # bin_dir = ./bin
 
-#-----------------------------------------------------------------------------
-#   Notes about using this file:
+#    -----------------------------------------------------------------------------
+#    List as sections
 #
-#   Buildozer uses a variant of Python's ConfigSpec to read this file.
-#   For the basic syntax, including interpolations, see
-#       https://docs.python.org/3/library/configparser.html#supported-ini-file-structure
+#    You can define all the "list" as [section:key].
+#    Each line will be considered as a option to the list.
+#    Let's take [app] / source.exclude_patterns.
+#    Instead of doing:
 #
-#   Warning: Comments cannot be used "inline" - i.e.
-#       [app]
-#       title = My Application # This is not a comment, it is part of the title.
+#[app]
+#source.exclude_patterns = license,data/audio/*.wav,data/images/original/*
 #
-#   Warning: Indented text is treated as a multiline string - i.e.
-#       [app]
-#       title = My Application
-#          package.name = myapp # This is all part of the title.
+#    This can be translated into:
 #
-#   Buildozer's .spec files have some additional features:
+#[app:source.exclude_patterns]
+#license
+#data/audio/*.wav
+#data/images/original/*
 #
-#   Buildozer supports lists - i.e.
-#       [app]
-#       source.include_exts = py,png,jpg
-#       #                     ^ This is a list.
+
+
+#    -----------------------------------------------------------------------------
+#    Profiles
 #
-#       [app:source.include_exts]
-#       py
-#       png
-#       jpg
-#       # ^ This is an alternative syntax for a list.
+#    You can extend section / key with a profile
+#    For example, you want to deploy a demo version of your application without
+#    HD content. You could first change the title to add "(demo)" in the name
+#    and extend the excluded directories to remove the HD content.
 #
-#   Buildozer's option names are case-sensitive, unlike most .ini files.
+#[app@demo]
+#title = My Application (demo)
 #
-#   Buildozer supports overriding options through environment variables.
-#   Name an environment variable as SECTION_OPTION to override a value in a .spec
-#   file.
+#[app:source.exclude_patterns@demo]
+#images/hd/*
 #
-#   Buildozer support overriding options through profiles.
-#   For example, you want to deploy a demo version of your application without
-#   HD content. You could first change the title to add "(demo)" in the name
-#   and extend the excluded directories to remove the HD content.
+#    Then, invoke the command line with the "demo" profile:
 #
-#       [app@demo]
-#       title = My Application (demo)
-#
-#       [app:source.exclude_patterns@demo]
-#       images/hd/*
-#
-#   Then, invoke the command line with the "demo" profile:
-#
-#        buildozer --profile demo android debug
-#
-#   Environment variable overrides have priority over profile overrides.
+#buildozer --profile demo android debug
